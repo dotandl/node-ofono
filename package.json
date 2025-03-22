@@ -1,0 +1,31 @@
+{
+  "name": "ofono",
+  "version": "0.0.1",
+  "description": "A library making it easy to interact with Ofono on GNU/Linux",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotandl/node-ofono.git"
+  },
+  "author": "dotandl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dotandl/node-ofono/issues"
+  },
+  "homepage": "https://github.com/dotandl/node-ofono#readme",
+  "scripts": {
+    "format": "prettier -w .",
+    "lint": "eslint --fix .",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.27.0"
+  }
+}
