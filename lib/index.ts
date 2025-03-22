@@ -1,1 +1,1 @@
-export default 'hello'
+export { Ofono } from './ofono'
