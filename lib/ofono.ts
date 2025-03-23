@@ -32,7 +32,7 @@ export class Ofono extends EventEmitter<OfonoEvents> {
     const modems: [string, { [key: string]: { value: unknown } }][] =
       await iface.GetModems()
 
-    return modems.map((m) => Modem.fromDBusObject(m))
+    return modems.map((m) => Modem.fromDBusObject(m, this.bus))
   }
 
   private async listenForChanges() {

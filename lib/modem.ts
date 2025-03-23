@@ -11,7 +11,6 @@ interface ModemEvents {
  * @see https://github.com/rilmodem/ofono/blob/master/doc/modem-api.txt
  */
 export class Modem extends EventEmitter<ModemEvents> {
-  private _path: string
   private _online: boolean
   private _powered: boolean
   private _lockdown: boolean
@@ -129,14 +128,8 @@ export class Modem extends EventEmitter<ModemEvents> {
     return this._bus
   }
 
-  /**
-   * Constructs a new modem object.
-   * @param path DBus object path
-   * @param data Data representing the modem, adequate to the class' fields
-   * @param bus DBus' message bus to be used, defaults to the system bus
-   */
-  public constructor(
-    path: string,
+  private constructor(
+    private _path: string,
     data: {
       online: boolean
       powered: boolean
@@ -154,7 +147,6 @@ export class Modem extends EventEmitter<ModemEvents> {
   ) {
     super()
 
-    this._path = path
     this._online = data.online
     this._powered = data.powered
     this._lockdown = data.lockdown
@@ -174,6 +166,7 @@ export class Modem extends EventEmitter<ModemEvents> {
    * Constructs a new modem object from raw data obtained from DBus.
    * @param data Data obtained from DBus
    * @param bus DBus' message bus to be used, defaults to the system bus
+   * @returns New modem object
    */
   public static fromDBusObject = (
     data: [
@@ -218,53 +211,42 @@ export class Modem extends EventEmitter<ModemEvents> {
         case 'Online':
           this._online = value
           break
-
         case 'Powered':
           this._powered = value
           break
-
         case 'Lockdown':
           this._lockdown = value
           break
-
         case 'Emergency':
           this._emergency = value
           break
-
         case 'Name':
           this._name = value
           break
-
         case 'Manufacturer':
           this._manufacturer = value
           break
-
         case 'Model':
           this._model = value
           break
-
         case 'Revision':
           this._revision = value
           break
-
         case 'Serial':
           this._serial = value
           break
-
         case 'Interfaces':
           this._interfaces = value
           break
-
         case 'Type':
           this._type = value
           break
-
         default:
           console.warn(`node-ofono: Modem: Unhandled property change: ${name}`)
           return
       }
-    })
 
-    this.emit('change')
+      this.emit('change')
+    })
   }
 }
