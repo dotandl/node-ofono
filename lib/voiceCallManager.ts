@@ -36,11 +36,12 @@ export class VoiceCallManager extends EventEmitter<VoiceCallManagerEvents> {
   /**
    * Constructs a new voice call manager object.
    * @param modem Instance of Modem
+   * @returns Voice call manager object
    */
   public static async ofModem(modem: Modem): Promise<VoiceCallManager> {
     if (modem.interfaces.indexOf('org.ofono.VoiceCallManager') === -1)
       throw new Error(
-        `node-ofono: VoiceCallManager(): Modem ${modem.path} does not support VoiceCallManager interface`
+        `node-ofono: VoiceCallManager.ofModem(): Modem ${modem.path} does not support VoiceCallManager interface`
       )
 
     const proxy = await modem.bus.getProxyObject('org.ofono', modem.path)

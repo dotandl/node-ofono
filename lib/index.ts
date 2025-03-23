@@ -1,4 +1,5 @@
 export { Modem } from './modem'
+export { NetworkRegistration } from './networkRegistration'
 export { Ofono } from './ofono'
 export { VoiceCall } from './voiceCall'
 export { VoiceCallManager } from './voiceCallManager'
