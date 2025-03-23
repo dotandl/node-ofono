@@ -21,6 +21,7 @@ export class Modem extends EventEmitter<ModemEvents> {
   private _manufacturer: string | null
   private _model: string | null
   private _revision: string | null
+  private _interfaces: string[]
   private _type: string
 
   /**
@@ -111,10 +112,21 @@ export class Modem extends EventEmitter<ModemEvents> {
   }
 
   /**
+   * DBus interfaces supported by the modem.
+   */
+  public get interfaces(): string[] {
+    return this._interfaces
+  }
+
+  /**
    * Type of the modem.
    */
   public get type(): string {
     return this._type
+  }
+
+  public get bus(): MessageBus {
+    return this._bus
   }
 
   /**
@@ -135,9 +147,10 @@ export class Modem extends EventEmitter<ModemEvents> {
       model?: string
       revision?: string
       serial?: string
+      interfaces: string[]
       type: string
     },
-    private bus: MessageBus = systemBus()
+    private _bus: MessageBus = systemBus()
   ) {
     super()
 
@@ -151,6 +164,7 @@ export class Modem extends EventEmitter<ModemEvents> {
     this._model = data.model ?? null
     this._revision = data.revision ?? null
     this._serial = data.serial ?? null
+    this._interfaces = data.interfaces
     this._type = data.type
 
     this.listenForChanges()
@@ -182,6 +196,7 @@ export class Modem extends EventEmitter<ModemEvents> {
         model: data[1].Model?.value as string,
         revision: data[1].Revision?.value as string,
         serial: data[1].Serial?.value as string,
+        interfaces: data[1].Interfaces.value as string[],
         type: data[1].Type.value as string,
       },
       bus
@@ -234,6 +249,10 @@ export class Modem extends EventEmitter<ModemEvents> {
 
         case 'Serial':
           this._serial = value
+          break
+
+        case 'Interfaces':
+          this._interfaces = value
           break
 
         case 'Type':
