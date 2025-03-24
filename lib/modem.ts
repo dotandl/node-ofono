@@ -199,7 +199,7 @@ export class Modem extends EventEmitter<ModemEvents> {
     const proxy = await this.bus.getProxyObject('org.ofono', this.path)
     const iface = proxy.getInterface('org.ofono.Modem')
 
-    await iface.SetProperty(prop, new Variant<T>(signature, val))
+    await iface.SetProperty(prop, new Variant(signature, val))
   }
 
   private async listenForChanges() {

@@ -232,7 +232,7 @@ export class NetworkRegistration extends EventEmitter<NetworkRegistrationEvents>
   private async listenForChanges() {
     const iface = await this.getInterface()
 
-    iface.on('PropertiesChanged', (prop, { value }) => {
+    iface.on('PropertyChanged', (prop, { value }) => {
       switch (prop) {
         case 'Mode':
           this._mode = value
