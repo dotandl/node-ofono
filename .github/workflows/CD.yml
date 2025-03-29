@@ -22,7 +22,13 @@ jobs:
       - name: Build the project
         run: npm run build
 
+      - name: Log into NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Set up NPMrc
+        run: echo '//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}' >> ~/.npmrc
+
       - name: Publish to NPM
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
