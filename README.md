@@ -2,6 +2,9 @@
 
 `node-ofono` is a Node.js binding for the oFono D-Bus interface, enabling seamless interaction with mobile telephony functions on Linux systems.
 
+[![Continuous Deployment](https://github.com/dotandl/node-ofono/actions/workflows/CD.yml/badge.svg)](https://github.com/dotandl/node-ofono/actions/workflows/CD.yml)
+![NPM Version](https://img.shields.io/npm/v/ofono)
+
 ## Features
 
 - Communicate with oFono over D-Bus
