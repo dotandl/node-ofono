@@ -1,8 +1,17 @@
 {
   "name": "ofono",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A library making it easy to interact with Ofono on GNU/Linux",
   "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dotandl/node-ofono.git"
